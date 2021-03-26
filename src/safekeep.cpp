@@ -86,7 +86,7 @@ void safekeep::changerepeat( const name& user, const uint64_t& starttime, const 
          while ( r.endtime < current_time_point().sec_since_epoch() ) {
             r.endtime += r.cycle_time;
          }
-         r.repeat  = false;
+         r.repeat = false;
       });
    }
    
@@ -111,11 +111,11 @@ void safekeep::transfer_handler( const name& from, const name& to, const asset& 
          records_table records( get_self(), from.value );
          records.emplace( get_self(), [&]( auto& r ) {
             r.starttime    = current_time_point().sec_since_epoch();
-            r.endtime      = current_time_point().sec_since_epoch() + sinfo.cycle_time;
+            r.endtime      = r.starttime + sinfo.cycle_time;
             r.cycle_time   = sinfo.cycle_time;
             r.contract     = contract;
             r.quantity     = quantity;
-            r.repeat       = memo == "1";
+            r.repeat       = memo == "repeat,1";
          });
          break;
       }
