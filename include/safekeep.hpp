@@ -10,7 +10,7 @@
 #include <string>
 #include <stdio.h>
 
-#define ADMIN    "admin.test"_n   // administrator
+#define ADMIN    "admin.yefi"_n   // administrator
 
 using namespace std;
 using namespace eosio;
